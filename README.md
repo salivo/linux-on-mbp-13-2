@@ -7,3 +7,8 @@ I am very thankful to everyone who found a solution for the problem with the Bro
 [Here](https://bugzilla.kernel.org/show_bug.cgi?id=193121) is where I found the fix.
 
 To fix this, just copy `brcmfmac43602-pcie.txt` to `/usr/lib/firmware/brcmf/`.
+
+And also install regualatory db
+```bash
+pacman -S wireless-regdb
+```
