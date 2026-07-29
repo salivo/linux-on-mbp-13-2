@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+case $1 in
+  pre)
+    # Unload ThunderBolt to reduce wake up time
+    modprobe -r thunderbolt 2>/dev/null
+    # Unload the Wi-Fi driver to prevent corruption
+    modprobe -r brcmfmac_wcc 2>/dev/null
+    modprobe -r brcmfmac 2>/dev/null
+    modprobe -r brcmutil 2>/dev/null
+    # Set all d3cold_allowed under /sys/devices/ to 0
+    for f in $(find /sys/devices/ -name d3cold_allowed); do
+      echo 0 > "$f" 2>/dev/null
+    done
+
+    # Explicitly set specific Thunderbolt / NVMe devices individually
+    for device in 0000:01:00.0 0000:1c:00.0 0000:05:00.0 0000:05:01.0 0000:05:02.0 0000:06:00.0; do
+      if [ -e "/sys/bus/pci/devices/$device/d3cold_allowed" ]; then
+        echo 0 > "/sys/bus/pci/devices/$device/d3cold_allowed" 2>/dev/null
+      fi
+    done
+    ;;
+  post)
+    # Probe ThunderBolt and WiFi driver back 
+    modprobe thunderbolt 2>/dev/null
+    modprobe brcmfmac 2>/dev/null
+    ;;
+esac
