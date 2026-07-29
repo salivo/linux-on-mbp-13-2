@@ -1,6 +1,7 @@
 # linux-on-mbp-13-2
 My notes on how to make Linux usable on a MacBook Pro 13,2.
 I use Arch Linux as my distro.
+linux 7.1.5 
 
 # Wi-Fi
 I am very thankful to everyone who found a solution for the problem with the Broadcom 43602.
