@@ -28,7 +28,8 @@ chmod +x /usr/lib/systemd/system-sleep/macbook-d3cold-prepare
 ## Audio
 
 Follow the instructions in the [davidjo/snd_hda_macbookpro](github.com/davidjo/snd_hda_macbookpro) repository on GitHub. I installed it using DKMS, and everything worked perfectly after a reboot.
-Bluetooth
+
+## Bluetooth
 
 The connection works out of the box.
 
